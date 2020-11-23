@@ -10,6 +10,7 @@
 #include <complex>
 #include <tbb/tbb.h>
 #include <FreeImage\FreeImagePlus.h>
+#include <chrono>
 
 
 #pragma once
@@ -26,14 +27,8 @@ namespace image {
 	};
 
 
-	void convert(void);
-	void luminance(void);
-	void convertback(void);
-
-	void convert_serial(void);
-	void luminance_serial(void);
-	void convertback_serial(void);
-
+	void convert();
+	void convert_serial();
 }
 
 #endif // IMAGE_H
