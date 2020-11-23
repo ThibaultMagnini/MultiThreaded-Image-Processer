@@ -17,7 +17,7 @@ namespace image {
 
 	struct Pixel
 	{
-		BYTE r, b, g;
+		BYTE r, g, b;
 	};
 
 	struct PixelxyY
@@ -29,6 +29,10 @@ namespace image {
 	void convert(void);
 	void luminance(void);
 	void convertback(void);
+
+	void convert_serial(void);
+	void luminance_serial(void);
+	void convertback_serial(void);
 
 }
 
