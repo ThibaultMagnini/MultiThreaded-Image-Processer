@@ -4,7 +4,7 @@
 void image::convert() {
 
 	fipImage inputImage;
-	if (inputImage.load("Images\\test.jpg"))
+	if (inputImage.load("Images\\fungus_highres.jpg"))
 		std::cout << "Loaded Succesfully!\n";
 	else
 		std::cout << "Failed to load image!\n";
@@ -29,7 +29,9 @@ void image::convert() {
 
 	std::cout << "Converting... RBG to xyY\n";
 
+	std::chrono::steady_clock::time_point beginTotal = std::chrono::steady_clock::now();
 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
 
 	tbb::parallel_for(
 
@@ -132,15 +134,21 @@ void image::convert() {
 	);
 
 	std::chrono::steady_clock::time_point end3 = std::chrono::steady_clock::now();
+	std::chrono::steady_clock::time_point endTotal = std::chrono::steady_clock::now();
+
 
 	std::cout << "Converting back time = " << std::chrono::duration_cast<std::chrono::microseconds>(end3 - begin3).count() << " microseconds" << std::endl;
 	std::cout << "************************************************" << std::endl;
+
+	std::cout << "Combined total time = " << std::chrono::duration_cast<std::chrono::microseconds>(endTotal - beginTotal).count() << " microseconds" << std::endl;
+	std::cout << "************************************************" << std::endl;
+
 
 	/*---------------------------------------------------------------------------------------*/
 
 	std::cout << "Saving...\n";
 	
-	if (outputImage.save("Images\\test1.jpg")) {
+	if (outputImage.save("Images\\fungus_highres1.jpg")) {
 		std::cout << "Succes Saving!\n";
 	}
 	else {

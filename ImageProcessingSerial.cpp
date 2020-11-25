@@ -3,7 +3,7 @@
 void image::convert_serial() {
 
 	fipImage inputImage;
-	if (inputImage.load("Images\\test.jpg"))
+	if (inputImage.load("Images\\fungus_highres.jpg"))
 		std::cout << "Loaded Succesfully!\n";
 	else
 		std::cout << "Failed to load image!\n";
@@ -33,6 +33,9 @@ void image::convert_serial() {
 	/*----------------------------------------------------------------------*/
 
 	std::cout << "Converting... RBG to xyY\n";
+
+	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
 	
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
@@ -85,10 +88,14 @@ void image::convert_serial() {
 		}
 	}
 
+	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
+	std::cout << "Time = " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << " microseconds" << std::endl;
+
 
 	std::cout << "Saving...\n";
 
-	if (outputImage.save("Images\\test2.jpg")) {
+	if (outputImage.save("Images\\fungus_highres1.jpg")) {
 		std::cout << "Succes Saving!\n";
 	}
 	else {
